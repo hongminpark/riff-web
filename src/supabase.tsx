@@ -19,7 +19,7 @@ export const fetchStickers = async (
     .select("id, image_url")
     .eq("is_activated", true)
     .eq("is_ai_generated", true)
-    .order("id", { ascending: true })
+    .order("id", { ascending: false })
     .range(start, start + count - 1);
 
   if (error) throw error;
