@@ -6,10 +6,10 @@ Modal.setAppElement("#__next"); // replace with your app element id
 
 interface ImageProps {
   imageUrl: string;
-  altText: string;
+  prompt: string;
 }
 
-const ImageComponent: React.FC<ImageProps> = ({ imageUrl, altText }) => {
+const ImageComponent: React.FC<ImageProps> = ({ imageUrl, prompt }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [copySuccess, setCopySuccess] = useState("");
 
@@ -21,7 +21,7 @@ const ImageComponent: React.FC<ImageProps> = ({ imageUrl, altText }) => {
   };
 
   const handleCopy = () => {
-    copy(imageUrl);
+    copy(prompt);
     setCopySuccess("Copied!");
   };
 
@@ -29,7 +29,7 @@ const ImageComponent: React.FC<ImageProps> = ({ imageUrl, altText }) => {
     <div className="flex h-full w-1/2 cursor-pointer items-center justify-center object-contain transition-transform duration-300 ease-in-out hover:scale-110">
       <img
         src={imageUrl}
-        alt={altText}
+        alt={prompt}
         className="max-h-full max-w-full object-contain"
         onClick={() => setModalIsOpen(true)}
       />
@@ -42,11 +42,11 @@ const ImageComponent: React.FC<ImageProps> = ({ imageUrl, altText }) => {
           },
           content: {
             backgroundColor: "rgba(0, 0, 0, 0.95)",
-            width: "50%",
-            height: "50%",
+            width: "80%",
+            maxWidth: "640px",
             margin: "auto",
             display: "flex",
-            flexDirection: "row",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             border: "0px",
@@ -54,27 +54,29 @@ const ImageComponent: React.FC<ImageProps> = ({ imageUrl, altText }) => {
           },
         }}
       >
-        <div className="flex h-full w-2/3 items-center justify-center p-16">
+        <div className="flex w-full items-center justify-center p-16">
           <img
             src={imageUrl}
-            alt={altText}
-            className="h-full max-h-1/2 w-full object-contain"
+            alt={prompt}
+            className="sm:max-h-3/4 h-full max-h-96 w-full object-contain"
           />
         </div>
 
-        <div className="flex h-full w-1/3 flex-col items-center justify-center text-white">
-          <p className="mb-4">{altText}</p>
+        <div className="flex w-full flex-col items-center justify-center text-white">
+          <p className="text-m align-center mb-4 px-8 text-center font-light">
+            {prompt}
+          </p>
           <button
-            className="mb-2 border border-white px-2 text-sm font-light"
+            className="mb-2 w-32 border border-white px-2 text-sm font-light"
             onClick={handleSave}
           >
-            SAVE
+            SAVE IMAGE
           </button>
           <button
-            className="border border-white px-2 text-sm font-light"
+            className="w-32 border border-white px-2 text-sm font-light"
             onClick={handleCopy}
           >
-            COPY
+            COPY PROMPT
           </button>
           {copySuccess && <p className="mt-2 text-green-500">{copySuccess}</p>}
         </div>

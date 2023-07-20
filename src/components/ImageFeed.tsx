@@ -1,12 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchStickers } from "../supabase";
+import { Sticker, fetchStickers } from "../lib/supabase";
 import ImageComponent from "./ImageComponent";
-
-interface Sticker {
-  id: number;
-  image_url: string;
-}
 
 const ImageFeed: React.FC = () => {
   const [stickers, setStickers] = useState<Sticker[]>([]);
@@ -43,7 +38,10 @@ const ImageFeed: React.FC = () => {
             style={{ paddingBottom: "120%" }}
           >
             <div className="absolute left-1/4 top-1/4 flex h-1/2 w-1/2 items-center justify-center">
-              <ImageComponent imageUrl={sticker.image_url} altText="" />
+              <ImageComponent
+                imageUrl={sticker.image_url}
+                prompt={sticker.prompt}
+              />
             </div>
           </div>
         ))}
