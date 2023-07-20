@@ -54,15 +54,15 @@ const ImageComponent: React.FC<ImageProps> = ({ imageUrl, altText }) => {
           },
         }}
       >
-        <div className="flex h-full w-1/2 items-center justify-center">
+        <div className="flex h-full w-2/3 items-center justify-center p-16">
           <img
             src={imageUrl}
             alt={altText}
-            className="h-1/2 w-1/2 object-contain"
+            className="h-full max-h-1/2 w-full object-contain"
           />
         </div>
 
-        <div className="flex h-full w-1/2 flex-col items-center justify-center text-white">
+        <div className="flex h-full w-1/3 flex-col items-center justify-center text-white">
           <p className="mb-4">{altText}</p>
           <button
             className="mb-2 border border-white px-2 text-sm font-light"

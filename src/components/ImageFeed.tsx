@@ -35,13 +35,8 @@ const ImageFeed: React.FC = () => {
       next={fetchMoreData}
       hasMore={hasMore}
       loader={<h4>Loading...</h4>}
-      endMessage={
-        <p style={{ textAlign: "center" }}>
-          <b>Yay! You have seen it all</b>
-        </p>
-      }
     >
-      <div className="grid grid-cols-2 gap-px bg-black sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+      <div className="grid grid-cols-2 gap-px bg-black sm:grid-cols-4 md:grid-cols-6">
         {stickers.map((sticker) => (
           <div
             className="relative border-b border-r border-white last:border-b-0 last:border-r-0"
