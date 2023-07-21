@@ -98,6 +98,21 @@ export default function Home() {
         <main className="flex flex-col gap-4">
           <NameBoxes />
           <ImageFeed />
+          <div className="text-s flex flex-col items-center justify-center gap-4 p-16 text-center font-light">
+            Support me with upvote if you liked!
+            <a
+              href="https://www.producthunt.com/posts/midjourney-png-assets-curation?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-midjourney&#0045;png&#0045;assets&#0045;curation"
+              target="_blank"
+            >
+              <img
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=405777&theme=light"
+                alt="MidJourney&#0032;PNG&#0032;Assets&#0032;Curation - Curation&#0032;of&#0032;200&#0043;&#0032;MJ&#0032;generated&#0032;aesthetic&#0032;free&#0032;pngs&#0044;&#0032;prompts | Product Hunt"
+                style={{ width: "250px", height: "54px" }}
+                width="250"
+                height="54"
+              />
+            </a>{" "}
+          </div>
         </main>
       </div>
     </>
