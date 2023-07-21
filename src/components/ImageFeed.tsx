@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Sticker, fetchStickers } from "../lib/supabase";
 import ImageComponent from "./ImageComponent";
@@ -6,17 +6,12 @@ import ImageComponent from "./ImageComponent";
 const ImageFeed: React.FC = () => {
   const [stickers, setStickers] = useState<Sticker[]>([]);
   const [hasMore, setHasMore] = useState(true);
-  const initialFetchDone = useRef(false);
 
   const fetchMoreData = async () => {
-    if (initialFetchDone.current) {
-      const newStickers = await fetchStickers(stickers.length, 64);
-      setStickers((prevStickers) => [...prevStickers, ...newStickers]);
-      if (newStickers.length === 0) {
-        setHasMore(false);
-      }
-    } else {
-      initialFetchDone.current = true;
+    const newStickers = await fetchStickers(stickers.length, 16);
+    setStickers((prevStickers) => [...prevStickers, ...newStickers]);
+    if (newStickers.length === 0) {
+      setHasMore(false);
     }
   };
 
@@ -49,4 +44,5 @@ const ImageFeed: React.FC = () => {
     </InfiniteScroll>
   );
 };
+
 export default ImageFeed;

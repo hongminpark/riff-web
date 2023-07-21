@@ -1,4 +1,5 @@
-import copy from "copy-to-clipboard";
+import copyToClipboard from "copy-to-clipboard";
+import Image from "next/image";
 import { useState } from "react";
 import Modal from "react-modal";
 
@@ -21,16 +22,18 @@ const ImageComponent: React.FC<ImageProps> = ({ imageUrl, prompt }) => {
   };
 
   const handleCopy = () => {
-    copy(prompt);
+    copyToClipboard(prompt);
     setCopySuccess("Copied!");
   };
 
   return (
-    <div className="flex h-full w-1/2 cursor-pointer items-center justify-center object-contain transition-transform duration-300 ease-in-out hover:scale-110">
-      <img
+    <div className="flex h-1/2 w-1/2 cursor-pointer items-center justify-center object-contain ">
+      <Image
         src={imageUrl}
         alt={prompt}
-        className="max-h-full max-w-full object-contain"
+        layout="fill"
+        objectFit="contain"
+        className="transition-transform duration-300 ease-in-out hover:scale-110"
         onClick={() => setModalIsOpen(true)}
       />
       <Modal
@@ -46,6 +49,7 @@ const ImageComponent: React.FC<ImageProps> = ({ imageUrl, prompt }) => {
             maxWidth: "640px",
             margin: "auto",
             display: "flex",
+            gap: "16px",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
@@ -54,18 +58,22 @@ const ImageComponent: React.FC<ImageProps> = ({ imageUrl, prompt }) => {
           },
         }}
       >
-        <div className="flex w-full items-center justify-center p-16">
-          <img
+        <div className="flex h-1/2 w-1/2 items-center justify-center">
+          <Image
             src={imageUrl}
             alt={prompt}
-            className="sm:max-h-3/4 h-full max-h-96 w-full object-contain"
+            width="0"
+            height="0"
+            sizes="100vw"
+            style={{ width: "100%", height: "100%", objectFit: "contain" }}
           />
         </div>
-
         <div className="flex w-full flex-col items-center justify-center text-white">
-          <p className="text-m align-center mb-4 px-8 text-center font-light">
-            {prompt}
-          </p>
+          {prompt && (
+            <p className="text-m align-center mb-4 px-8 text-center font-light">
+              Original Prmopt | {prompt}
+            </p>
+          )}
           <button
             className="mb-2 w-32 border border-white px-2 text-sm font-light"
             onClick={handleSave}

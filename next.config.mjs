@@ -26,6 +26,22 @@ const config = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "escff-riff-public.s3.ap-northeast-2.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "escff-riff-public.s3.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  },
 };
 
 export default config;
