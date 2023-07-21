@@ -8,7 +8,7 @@ const ImageFeed: React.FC = () => {
   const [hasMore, setHasMore] = useState(true);
 
   const fetchMoreData = async () => {
-    const newStickers = await fetchStickers(stickers.length, 16);
+    const newStickers = await fetchStickers(stickers.length, 32);
     setStickers((prevStickers) => [...prevStickers, ...newStickers]);
     if (newStickers.length === 0) {
       setHasMore(false);
